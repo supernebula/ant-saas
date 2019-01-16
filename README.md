@@ -2,6 +2,9 @@
 
 ant-saas basic for abp 4.4.0;
 
+[Microsoft 分发的 Mobile OpenJDK](https://docs.microsoft.com/zh-cn/xamarin/android/get-started/installation/openjdk)
+
+
 # Introduction
 
 This is a template to create **ASP.NET Core MVC / Angular** based startup projects for [ASP.NET Boilerplate](https://aspnetboilerplate.com/Pages/Documents). It has 2 different versions:
