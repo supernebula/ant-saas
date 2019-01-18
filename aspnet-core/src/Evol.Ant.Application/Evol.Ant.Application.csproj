@@ -12,5 +12,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Evol.Ant.Core\Evol.Ant.Core.csproj" />
+    <ProjectReference Include="..\Yelp\Evol.Ant.Yelp.Core\Evol.Ant.Yelp.Core.csproj" />
   </ItemGroup>
 </Project>
