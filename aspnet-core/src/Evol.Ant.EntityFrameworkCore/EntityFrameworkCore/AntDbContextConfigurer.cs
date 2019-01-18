@@ -17,5 +17,18 @@ namespace Evol.Ant.EntityFrameworkCore
             //builder.UseSqlServer(connection);
             builder.UseMySql(connection);
         }
+
+        public static void Configure(DbContextOptionsBuilder<AntYelpDbContext> builder, string connectionString)
+        {
+            //builder.UseSqlServer(connection);
+            builder.UseMySql(connectionString);
+        }
+
+
+        public static void Configure(DbContextOptionsBuilder<AntYelpDbContext> builder, DbConnection connection)
+        {
+            //builder.UseSqlServer(connection);
+            builder.UseMySql(connection);
+        }
     }
 }
