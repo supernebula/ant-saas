@@ -1,17 +1,17 @@
 
-[ABP´ÓÈëÃÅµ½¾«Í¨£¨2£©£ºaspnet-zero-core Ê¹ÓÃMySqlÊı¾İ¿â](https://www.cnblogs.com/stulzq/p/7242581.html)
+[ABPä»å…¥é—¨åˆ°ç²¾é€šï¼ˆ2ï¼‰ï¼šaspnet-zero-core ä½¿ç”¨MySqlæ•°æ®åº“](https://www.cnblogs.com/stulzq/p/7242581.html)
 
-[½â¾ömysql²åÈëÊı¾İÊ±³öÏÖIncorrect string value: '\xF0\x9F...' for column 'name' at row 1µÄÒì³£](https://blog.csdn.net/azhegps/article/details/71480633)
+[è§£å†³mysqlæ’å…¥æ•°æ®æ—¶å‡ºç°Incorrect string value: '\xF0\x9F...' for column 'name' at row 1çš„å¼‚å¸¸](https://blog.csdn.net/azhegps/article/details/71480633)
 
-½«ÒÑ¾­½¨ºÃµÄ±íÒ²×ª»»³Éutf8mb4
+å°†å·²ç»å»ºå¥½çš„è¡¨ä¹Ÿè½¬æ¢æˆutf8mb4
 
-ÃüÁî£ºalter table TABLE_NAME convert to character set utf8mb4 collate utf8mb4_bin; £¨½«TABLE_NAMEÌæ»»³ÉÄãµÄ±íÃû£©
+å‘½ä»¤ï¼šalter table TABLE_NAME convert to character set utf8mb4 collate utf8mb4_bin; ï¼ˆå°†TABLE_NAMEæ›¿æ¢æˆä½ çš„è¡¨åï¼‰
 
 
 
 # Issuse
 
-1. Êı¾İ±íÃ»ÓĞÖ÷¼ü£¬ÎŞ·¨½øĞĞÄæÏò¹¤³ÌÒÔÉú³ÉÊµÌåÀà
+1. æ•°æ®è¡¨æ²¡æœ‰ä¸»é”®ï¼Œæ— æ³•è¿›è¡Œé€†å‘å·¥ç¨‹ä»¥ç”Ÿæˆå®ä½“ç±»
 
 Scaffold-DbContext "server=127.0.0.1;User ID=root;Password=123456;database=yelp_db;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 
@@ -21,24 +21,24 @@ Scaffold-DbContext "server=127.0.0.1;User ID=root;Password=123456;database=yelp_
 
 Unable to identify the primary key for table 'attribute'.
 
-[Entity Framework Core ¹¤¾ßÒıÓÃµÄ.NET CLI](https://docs.microsoft.com/zh-cn/ef/core/miscellaneous/cli/dotnet#dotnet-ef-dbcontext-scaffold)
+[Entity Framework Core å·¥å…·å¼•ç”¨çš„.NET CLI](https://docs.microsoft.com/zh-cn/ef/core/miscellaneous/cli/dotnet#dotnet-ef-dbcontext-scaffold)
 
-dotnet ef dbcontext »ù¼Ü
+dotnet ef dbcontext åŸºæ¶
 
-ÎªÉú³É´úÂëDbContextºÍÊı¾İ¿âµÄÊµÌåÀàĞÍ¡£ ÎªÁËÊ¹´ËÃüÁîÀ´Éú³ÉÊµÌåÀàĞÍ£¬Êı¾İ¿â±í±ØĞë¾ßÓĞÖ÷¼ü¡£
+ä¸ºç”Ÿæˆä»£ç DbContextå’Œæ•°æ®åº“çš„å®ä½“ç±»å‹ã€‚ ä¸ºäº†ä½¿æ­¤å‘½ä»¤æ¥ç”Ÿæˆå®ä½“ç±»å‹ï¼Œæ•°æ®åº“è¡¨å¿…é¡»å…·æœ‰ä¸»é”®ã€‚
 
 
 # yelp_db
 
 
-1. ²Ù×÷ÎªÒÔÏÂÊı¾İ±íÔö¼Ó×é¼şid
-Ô­Òò£º
-Ô­±íÃ»ÓĞÖ÷¼ü¡£Ö»ÓĞ±í°üº¬Ö÷¼ü£¬EF Core ²ÅÄÜÖ´ĞĞ·´Ïò¹¤³Ì£¬DataFirst Éú³É´úÂë
-±í£º
-attribute¡¢checkin¡¢elite_years¡¢friend¡¢hours¡¢tip
-id×Ö¶Î
+1. æ“ä½œä¸ºä»¥ä¸‹æ•°æ®è¡¨å¢åŠ ç»„ä»¶id
+åŸå› ï¼š
+åŸè¡¨æ²¡æœ‰ä¸»é”®ã€‚åªæœ‰è¡¨åŒ…å«ä¸»é”®ï¼ŒEF Core æ‰èƒ½æ‰§è¡Œåå‘å·¥ç¨‹ï¼ŒDataFirst ç”Ÿæˆä»£ç 
+è¡¨ï¼š
+attributeã€categoryã€checkinã€elite_yearsã€friendã€hoursã€tip
+idå­—æ®µ
 
-id    varchar  36   0   ²»ÎªNULL  Ö÷¼ü
+id    varchar  36   0   ä¸ä¸ºNULL  ä¸»é”®
 ```sql
 SELECT COUNT(user_id) FROM friend WHERE ISNULL(id);
 
@@ -55,18 +55,18 @@ UPDATE friend SET id = UUID()  WHERE ISNULL(id) LIMIT 10000000;
 
 ## issuse
 
-Ö´ĞĞ¸ü¸ÄÊÇËø×ÜÊıÒç³ö
+æ‰§è¡Œæ›´æ”¹æ˜¯é”æ€»æ•°æº¢å‡º
 
 [mysql [Err] 1206 - The total number of locks exceeds the lock table size](https://blog.csdn.net/github_36326955/article/details/54970808)
 
-Ô­Òò£º
-InnoDB±íÖ´ĞĞ´óÅúÁ¿Êı¾İµÄ¸üĞÂ£¬²åÈë£¬É¾³ı²Ù×÷Ê±»á³öÏÖÕâ¸öÎÊÌâ£¬ĞèÒªµ÷ÕûInnoDBÈ«¾ÖµÄinnodb_buffer_pool_sizeµÄÖµÀ´½â¾öÕâ¸öÎÊÌâ£¬²¢ÇÒÖØÆômysql·şÎñ¡£
+åŸå› ï¼š
+InnoDBè¡¨æ‰§è¡Œå¤§æ‰¹é‡æ•°æ®çš„æ›´æ–°ï¼Œæ’å…¥ï¼Œåˆ é™¤æ“ä½œæ—¶ä¼šå‡ºç°è¿™ä¸ªé—®é¢˜ï¼Œéœ€è¦è°ƒæ•´InnoDBå…¨å±€çš„innodb_buffer_pool_sizeçš„å€¼æ¥è§£å†³è¿™ä¸ªé—®é¢˜ï¼Œå¹¶ä¸”é‡å¯mysqlæœåŠ¡ã€‚
 
-½øÈëmysqlÃüÁî
-show variables like "%_buffer%";(²»ÒªÍü¼Ç´ø;ºÅ£¬Ã»ÓĞ;ºÅ±íÊ¾Ò»ÌõÓï¾äÃ»ÓĞ½áÊø)
+è¿›å…¥mysqlå‘½ä»¤
+show variables like "%_buffer%";(ä¸è¦å¿˜è®°å¸¦;å·ï¼Œæ²¡æœ‰;å·è¡¨ç¤ºä¸€æ¡è¯­å¥æ²¡æœ‰ç»“æŸ)
 
-Ä¬ÈÏµÄinnodb_buffer_pool_size=8M
+é»˜è®¤çš„innodb_buffer_pool_size=8M
 
-ÏÔÊ¾µÄ¸ñÊ½ÊÇ 1M*1024*1024,ÉèÖÃµÄÊ±ºòÒ²ÒªÕâÑùÉèÖÃ£¬ÀıÈç
+æ˜¾ç¤ºçš„æ ¼å¼æ˜¯ 1M*1024*1024,è®¾ç½®çš„æ—¶å€™ä¹Ÿè¦è¿™æ ·è®¾ç½®ï¼Œä¾‹å¦‚
 
-ĞŞ¸Ä innodb_buffer_pool_sizeµÄÖµÎª3G
+ä¿®æ”¹ innodb_buffer_pool_sizeçš„å€¼ä¸º3G
