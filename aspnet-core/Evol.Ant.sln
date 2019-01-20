@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Ant.EntityFrameworkCor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D3468B36-DBC6-427C-9D22-5300B4426BD0}"
 	ProjectSection(SolutionItems) = preProject
-		ref.md = ref.md
+		docs\ref.md = docs\ref.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Yelp", "Yelp", "{626A3CF5-8F36-4007-9712-37A5D864735F}"
