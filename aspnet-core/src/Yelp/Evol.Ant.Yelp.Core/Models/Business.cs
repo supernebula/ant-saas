@@ -7,8 +7,13 @@ namespace Evol.Ant.Yelp.Models
     {
         public Business()
         {
+            Attribute = new HashSet<Attribute>();
+            Category = new HashSet<Category>();
+            Checkin = new HashSet<Checkin>();
+            Hours = new HashSet<Hours>();
             Photo = new HashSet<Photo>();
             Review = new HashSet<Review>();
+            Tip = new HashSet<Tip>();
         }
 
         public string Id { get; set; }
@@ -24,7 +29,12 @@ namespace Evol.Ant.Yelp.Models
         public int? ReviewCount { get; set; }
         public sbyte? IsOpen { get; set; }
 
+        public virtual ICollection<Attribute> Attribute { get; set; }
+        public virtual ICollection<Category> Category { get; set; }
+        public virtual ICollection<Checkin> Checkin { get; set; }
+        public virtual ICollection<Hours> Hours { get; set; }
         public virtual ICollection<Photo> Photo { get; set; }
         public virtual ICollection<Review> Review { get; set; }
+        public virtual ICollection<Tip> Tip { get; set; }
     }
 }

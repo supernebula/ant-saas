@@ -7,7 +7,10 @@ namespace Evol.Ant.Yelp.Models
     {
         public User()
         {
+            EliteYears = new HashSet<EliteYears>();
+            Friend = new HashSet<Friend>();
             Review = new HashSet<Review>();
+            Tip = new HashSet<Tip>();
         }
 
         public string Id { get; set; }
@@ -31,6 +34,9 @@ namespace Evol.Ant.Yelp.Models
         public int? ComplimentWriter { get; set; }
         public int? ComplimentPhotos { get; set; }
 
+        public virtual ICollection<EliteYears> EliteYears { get; set; }
+        public virtual ICollection<Friend> Friend { get; set; }
         public virtual ICollection<Review> Review { get; set; }
+        public virtual ICollection<Tip> Tip { get; set; }
     }
 }

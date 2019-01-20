@@ -15,18 +15,17 @@ namespace Evol.Ant.Yelp.Models
         {
         }
 
+        public virtual DbSet<Attribute> Attribute { get; set; }
         public virtual DbSet<Business> Business { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Checkin> Checkin { get; set; }
+        public virtual DbSet<EliteYears> EliteYears { get; set; }
+        public virtual DbSet<Friend> Friend { get; set; }
+        public virtual DbSet<Hours> Hours { get; set; }
         public virtual DbSet<Photo> Photo { get; set; }
         public virtual DbSet<Review> Review { get; set; }
+        public virtual DbSet<Tip> Tip { get; set; }
         public virtual DbSet<User> User { get; set; }
-
-        // Unable to generate entity type for table 'attribute'. Please see the warning messages.
-        // Unable to generate entity type for table 'category'. Please see the warning messages.
-        // Unable to generate entity type for table 'checkin'. Please see the warning messages.
-        // Unable to generate entity type for table 'elite_years'. Please see the warning messages.
-        // Unable to generate entity type for table 'friend'. Please see the warning messages.
-        // Unable to generate entity type for table 'hours'. Please see the warning messages.
-        // Unable to generate entity type for table 'tip'. Please see the warning messages.
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -39,6 +38,37 @@ namespace Evol.Ant.Yelp.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Attribute>(entity =>
+            {
+                entity.ToTable("attribute");
+
+                entity.HasIndex(e => e.BusinessId)
+                    .HasName("fk_table1_business_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("varchar(36)");
+
+                entity.Property(e => e.BusinessId)
+                    .IsRequired()
+                    .HasColumnName("business_id")
+                    .HasColumnType("varchar(22)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasColumnType("varchar(255)");
+
+                entity.Property(e => e.Value)
+                    .HasColumnName("value")
+                    .HasColumnType("text");
+
+                entity.HasOne(d => d.Business)
+                    .WithMany(p => p.Attribute)
+                    .HasForeignKey(d => d.BusinessId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_table1_business");
+            });
+
             modelBuilder.Entity<Business>(entity =>
             {
                 entity.ToTable("business");
@@ -84,6 +114,145 @@ namespace Evol.Ant.Yelp.Models
                 entity.Property(e => e.State)
                     .HasColumnName("state")
                     .HasColumnType("varchar(255)");
+            });
+
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.ToTable("category");
+
+                entity.HasIndex(e => e.BusinessId)
+                    .HasName("fk_categories_business1_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("varchar(36)");
+
+                entity.Property(e => e.BusinessId)
+                    .IsRequired()
+                    .HasColumnName("business_id")
+                    .HasColumnType("varchar(22)");
+
+                entity.Property(e => e.Category1)
+                    .HasColumnName("category")
+                    .HasColumnType("varchar(255)");
+
+                entity.HasOne(d => d.Business)
+                    .WithMany(p => p.Category)
+                    .HasForeignKey(d => d.BusinessId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_categories_business1");
+            });
+
+            modelBuilder.Entity<Checkin>(entity =>
+            {
+                entity.ToTable("checkin");
+
+                entity.HasIndex(e => e.BusinessId)
+                    .HasName("fk_checkin_business1_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("varchar(36)");
+
+                entity.Property(e => e.BusinessId)
+                    .IsRequired()
+                    .HasColumnName("business_id")
+                    .HasColumnType("varchar(22)");
+
+                entity.Property(e => e.Count)
+                    .HasColumnName("count")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Date)
+                    .HasColumnName("date")
+                    .HasColumnType("varchar(255)");
+
+                entity.HasOne(d => d.Business)
+                    .WithMany(p => p.Checkin)
+                    .HasForeignKey(d => d.BusinessId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_checkin_business1");
+            });
+
+            modelBuilder.Entity<EliteYears>(entity =>
+            {
+                entity.ToTable("elite_years");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("fk_elite_years_user1_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("varchar(36)");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasColumnName("user_id")
+                    .HasColumnType("varchar(22)");
+
+                entity.Property(e => e.Year)
+                    .HasColumnName("year")
+                    .HasColumnType("char(4)");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.EliteYears)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_elite_years_user1");
+            });
+
+            modelBuilder.Entity<Friend>(entity =>
+            {
+                entity.ToTable("friend");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("fk_friends_user1_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("varchar(36)");
+
+                entity.Property(e => e.FriendId)
+                    .HasColumnName("friend_id")
+                    .HasColumnType("varchar(22)");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasColumnName("user_id")
+                    .HasColumnType("varchar(22)");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Friend)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_friends_user1");
+            });
+
+            modelBuilder.Entity<Hours>(entity =>
+            {
+                entity.ToTable("hours");
+
+                entity.HasIndex(e => e.BusinessId)
+                    .HasName("fk_hours_business1_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("varchar(36)");
+
+                entity.Property(e => e.BusinessId)
+                    .IsRequired()
+                    .HasColumnName("business_id")
+                    .HasColumnType("varchar(22)");
+
+                entity.Property(e => e.Hours1)
+                    .HasColumnName("hours")
+                    .HasColumnType("varchar(255)");
+
+                entity.HasOne(d => d.Business)
+                    .WithMany(p => p.Hours)
+                    .HasForeignKey(d => d.BusinessId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_hours_business1");
             });
 
             modelBuilder.Entity<Photo>(entity =>
@@ -176,6 +345,55 @@ namespace Evol.Ant.Yelp.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_reviews_user1");
+            });
+
+            modelBuilder.Entity<Tip>(entity =>
+            {
+                entity.ToTable("tip");
+
+                entity.HasIndex(e => e.BusinessId)
+                    .HasName("fk_tip_business1_idx");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("fk_tip_user1_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("varchar(36)");
+
+                entity.Property(e => e.BusinessId)
+                    .IsRequired()
+                    .HasColumnName("business_id")
+                    .HasColumnType("varchar(22)");
+
+                entity.Property(e => e.Date)
+                    .HasColumnName("date")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Likes)
+                    .HasColumnName("likes")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Text)
+                    .HasColumnName("text")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasColumnName("user_id")
+                    .HasColumnType("varchar(22)");
+
+                entity.HasOne(d => d.Business)
+                    .WithMany(p => p.Tip)
+                    .HasForeignKey(d => d.BusinessId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_tip_business1");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Tip)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_tip_user1");
             });
 
             modelBuilder.Entity<User>(entity =>
